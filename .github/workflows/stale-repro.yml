@@ -1,0 +1,31 @@
+# Keeps the queue self-healing: a report we couldn't reproduce (needs-repro) that
+# goes quiet gets one friendly nudge, then a gentle close — reopenable any time.
+name: Tend the needs-repro queue
+on:
+  schedule:
+    - cron: '17 9 * * 1'   # Mondays, 09:17 UTC
+  workflow_dispatch:
+permissions:
+  issues: write
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          only-labels: 'needs-repro'
+          days-before-stale: 14
+          days-before-close: 7
+          stale-issue-label: 'stale'
+          close-issue-reason: 'not_planned'
+          remove-stale-when-updated: true
+          stale-issue-message: >
+            Hi! We tried to reproduce this one but couldn't quite pin it down, and it's
+            been quiet for a couple of weeks. 🐚 If it's still happening, just reply with
+            your **seed** (the in-game `Copy Bug Info` box) or any new detail and we'll
+            jump right back on it. Otherwise we'll gently close this in a week — no
+            worries, you can always reopen it.
+          close-issue-message: >
+            Closing this for now since we couldn't reproduce it — but **please reopen it
+            the moment it happens again**, ideally with a seed. Thanks so much for
+            reporting, and dive safe! 🐢

@@ -1,0 +1,30 @@
+name: Decline code PRs
+on:
+  pull_request_target:
+    types: [opened]
+permissions:
+  pull-requests: write
+jobs:
+  decline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const author = context.payload.pull_request.user.login;
+            const body = [
+              `Thanks for wanting to help, @${author}! ❤️`, '',
+              "This repository is our **feedback intake** — the game's source code isn't hosted",
+              "here, so there's nothing for a code change to modify. I'm closing this PR, but",
+              "please don't take it the wrong way: **the reports and ideas you file here are",
+              "exactly what we're looking for.**", '',
+              "👉 [Open a bug report or feature idea instead](../../issues/new/choose) — thank you! 🐚",
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number, body,
+            });
+            await github.rest.pulls.update({
+              owner: context.repo.owner, repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number, state: 'closed',
+            });
