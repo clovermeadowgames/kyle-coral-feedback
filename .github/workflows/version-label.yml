@@ -1,0 +1,38 @@
+# Labels each report with the build it came from, parsed from the "magic box"
+# (bug_report.yml's game_info field, e.g. "Kyle Coral v0.6.5"). Lets triage slice
+# feedback by version — "did the L4 deaths clear in v0.7.0?". issues:write only.
+name: Label reports by build version
+on:
+  issues:
+    types: [opened, edited]
+permissions:
+  issues: write
+jobs:
+  version-label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body || '';
+            // Prefer the "Kyle Coral vX.Y.Z" stamp; fall back to a bare vX.Y.Z.
+            const m = body.match(/Kyle Coral\s+v(\d+\.\d+\.\d+)/i)
+                   || body.match(/\bv(\d+\.\d+\.\d+)\b/);
+            if (!m) return;
+            const label = `v${m[1]}`;
+            const { owner, repo } = context.repo;
+            try {
+              await github.rest.issues.getLabel({ owner, repo, name: label });
+            } catch (e) {
+              if (e.status !== 404) throw e;
+              await github.rest.issues.createLabel({
+                owner, repo, name: label, color: 'c5def5',
+                description: 'Reported on this build',
+              });
+            }
+            const has = (context.payload.issue.labels || []).some(l => l.name === label);
+            if (!has) {
+              await github.rest.issues.addLabels({
+                owner, repo, issue_number: context.payload.issue.number, labels: [label],
+              });
+            }
