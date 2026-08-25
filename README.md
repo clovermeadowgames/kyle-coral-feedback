@@ -56,6 +56,12 @@ Every report is read by a human. Here's the journey:
 
 You'll get notified right here on your issue as it moves along.
 
+## 🏆 We notice great reports
+
+First time filing? You'll get a warm welcome. 🎉 And when a report is especially sharp — a clean
+repro, a tricky edge case, a clip that nails it — we tag it **`great-catch`** as a small thank-you.
+Every seed you send genuinely makes the game better, and we don't forget it.
+
 ---
 
 ## 📌 A couple of notes

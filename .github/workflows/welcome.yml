@@ -1,0 +1,39 @@
+# Greets every new report warmly, sets expectations, and makes first-time
+# reporters feel especially welcome. Read-only token elevated to issues:write only.
+name: Welcome new reports
+on:
+  issues:
+    types: [opened]
+permissions:
+  issues: write
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const author = context.payload.issue.user.login;
+            // Has this person filed here before? (first report gets extra warmth)
+            const prior = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'all', creator: author, per_page: 2,
+            });
+            const isFirst = prior.data.filter(i => !i.pull_request).length <= 1;
+            const hi = isFirst
+              ? `Welcome aboard, @${author} — and thank you for your **very first Kyle Coral report**! 🎉🐚`
+              : `Thanks for another great report, @${author}! 🐚`;
+            const body = [
+              hi, '',
+              "A human on our team reads **every** report. Here's what happens next:",
+              '',
+              '1. We reproduce it from your **seed** (that magic box is gold 🪄).',
+              '2. We tag it `confirmed` once we see it too — or `needs-repro` if we need a little more.',
+              "3. When a fix is queued, we tag it `ported` and keep this thread posted so you can watch it land.",
+              '',
+              "You'll get a notification right here as it moves along. Dive safe out there! 🐢🫧",
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: context.payload.issue.number, body,
+            });
