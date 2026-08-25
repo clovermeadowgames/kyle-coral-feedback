@@ -1,0 +1,131 @@
+name: 🐛 Report a bug
+description: Something in the game is broken, stuck, or weird.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Found something broken or weird? Nice catch — let's squash it! 🐛
+
+        Five quick boxes. Three of them are just one click.
+
+        > **Wondering whether something *should* work differently** (rather than
+        > it being broken)? That's a 🤔 **Design question** instead — it gets a
+        > better answer over there.
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: |
+        Tell it like you'd tell a friend. One sentence is plenty — but we do need
+        the sentence, even if you're also adding a picture.
+      placeholder: "Kyle got stuck in the wall next to an air bubble and couldn't move."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where were you?
+      description: Which part of the game? Pick the closest one.
+      options:
+        - Shallows (levels 1–3)
+        - Kelp Forest (levels 4–7)
+        - Deep Blue (levels 8–12)
+        - Sunken Ruins (levels 13–17)
+        - Abyss (levels 18–20)
+        - The Sunken Ship (secret wreck)
+        - Rapture of the Deep
+        - Trading Post or Black Market (the shops)
+        - The Dive Map
+        - Title screen, menus, or settings
+        - Somewhere else / not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: how_bad
+    attributes:
+      label: How bad is it?
+      description: Pick by what it *did to your game*, not how ugly it was.
+      options:
+        - "Stopped me — it crashed, froze, or I got stuck and had to quit"
+        - "Cost me the run — I lost a life, lost pearls, or had to start over"
+        - "Wrong, but I played on — something worked, just not the way it should"
+        - "Only looks wrong — a visual glitch; nothing actually broke"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: every_time
+    attributes:
+      label: Does it happen every time?
+      options:
+        - Every time
+        - Sometimes
+        - It only happened once
+        - Haven't tried again
+    validations:
+      required: true
+
+  - type: textarea
+    id: game_info
+    attributes:
+      label: "Game info ✨ (the magic box)"
+      description: |
+        **In the game: press ESC, then click `Copy Bug Info`.** Paste it here. That's it!
+
+        (It's also inside `Debug…`, where the button is called `Copy Info`.)
+
+        This one box carries the **seed**, level, biome and version — the seed is what
+        lets us regenerate your exact cave and see the bug ourselves. Without it we're
+        guessing.
+
+        **Can't find the button?** Type the version from the bottom corner of the title
+        screen and the level number you were on, and send it anyway.
+      placeholder: |
+        Kyle Coral v0.6.5
+        Seed: 2710291430
+        Level: 9 (DEEP BLUE)
+        Player: cell (82, 10) @ (1322, 170)
+        Platform: macOS
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: doing
+    attributes:
+      label: What were you doing right before? (optional)
+      description: Fighting a fish? Grabbing air? Cutting kelp? Anything you remember helps.
+      placeholder: "I was dashing past the spiky coral toward an air bubble."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: What were you playing with? (optional)
+      description: Worth a click if the bug is about menus, buttons, or controls.
+      options:
+        - Keyboard
+        - Controller
+        - Mouse
+        - Keyboard and controller together
+    validations:
+      required: false
+
+  - type: textarea
+    id: media
+    attributes:
+      label: Picture or video (optional)
+      description: |
+        Drag a screenshot or clip here — a picture helps a LOT.
+
+        ⚠️ But **please don't send a picture on its own.** Our robot helper often
+        can't open image attachments, so a report that's only screenshots can't be
+        worked on at all. Always describe it in words too.
+    validations:
+      required: false

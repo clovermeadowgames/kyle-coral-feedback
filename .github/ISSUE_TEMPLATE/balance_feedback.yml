@@ -1,0 +1,70 @@
+name: ⚖️ Too hard or too easy?
+description: A part of the game feels unfair, too tough, or too easy.
+title: "[Balance]: "
+labels: ["balance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Is something too hard, too easy, or just kind of unfair? Tell us and
+        we'll tune it. ⚖️
+
+        > **Actually broken**, not just tough? → 🐛 Report a bug.
+
+  - type: dropdown
+    id: direction
+    attributes:
+      label: Which way?
+      options:
+        - Too hard — I kept failing
+        - Too easy — no challenge
+        - Unfair — losing didn't feel like my fault
+        - Slow or boring — not hard, just a slog
+    validations:
+      required: true
+
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where did it happen?
+      options:
+        - Shallows (levels 1–3)
+        - Kelp Forest (levels 4–7)
+        - Deep Blue (levels 8–12)
+        - Sunken Ruins (levels 13–17)
+        - Abyss (levels 18–20)
+        - The Sunken Ship (secret wreck)
+        - Rapture of the Deep
+        - Trading Post or Black Market (the shops)
+        - Across the whole game
+    validations:
+      required: true
+
+  - type: textarea
+    id: whats_up
+    attributes:
+      label: What felt too hard or too easy?
+      description: Tell us what happened and how it felt. Name the level, monster, or gear if you can.
+      placeholder: "I ran out of air every time before reaching the first bubble on level 5. It felt impossible without the scuba tank."
+    validations:
+      required: true
+
+  - type: textarea
+    id: better
+    attributes:
+      label: What would make it better?
+      description: More air? A slower monster? A cheaper knife? Your call — even a guess helps.
+    validations:
+      required: false
+
+  - type: textarea
+    id: game_info
+    attributes:
+      label: "Game info ✨ (optional)"
+      description: |
+        If it was one exact level, press **ESC** in game, click **`Copy Bug Info`**,
+        and paste it here — the seed lets us replay your exact cave and feel it
+        ourselves.
+      render: text
+    validations:
+      required: false

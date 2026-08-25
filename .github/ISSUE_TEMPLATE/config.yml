@@ -1,0 +1,3 @@
+# Everyone picks a template so reports have what we need to fix them.
+# One thing per report, please — it keeps each fix easy to track.
+blank_issues_enabled: false

@@ -1,0 +1,38 @@
+name: 💡 Share an idea
+description: Something new you'd love to see in the game.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Got a cool idea for the game? We want to hear it! 💡
+        Tell us as much or as little as you like.
+
+        > Not sure it's an idea so much as an open question ("should it work this
+        > way?") → 🤔 **Ask a design question** instead.
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: What's your idea?
+      description: What would you add or change?
+      placeholder: "A pet dolphin that swims with Kyle and scares away small fish."
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why would it be fun?
+      description: What makes it cool? What would it feel like to play?
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Drawings, pictures, or a game that already does it well — drop it here.
+    validations:
+      required: false

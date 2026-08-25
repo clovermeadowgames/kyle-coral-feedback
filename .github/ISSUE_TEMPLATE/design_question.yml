@@ -1,0 +1,74 @@
+name: 🤔 Ask a design question
+description: Not broken — but should it work this way? Open questions and "what's our best option here?"
+title: "[Design]: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For the questions that don't have a right answer yet. 🤔
+
+        "Should enemies look more dangerous?", "is the shop in the right place?",
+        "do players just learn this, or do we teach it?" — those belong here, not
+        in a bug report. Filed as a bug they get read as "something is broken",
+        someone goes looking for the break, finds none, and the actual question
+        never gets answered.
+
+        **Broken thing?** → 🐛 Report a bug.
+        **Too hard / too easy?** → ⚖️ Too hard or too easy?
+
+  - type: textarea
+    id: question
+    attributes:
+      label: What's the question?
+      description: What are you unsure about? Ask it however it comes out.
+      placeholder: "It's hard to tell which things hurt you and which are just scenery. Should the player just learn it, or should we make it clearer?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: noticed
+    attributes:
+      label: What made you think of it?
+      description: |
+        The moment that prompted it. Real examples are what make a design question
+        answerable — "coral vs. anemone" beats "some things are unclear".
+      placeholder: "I keep swimming into anemones because they look like the coral you can touch. Same with the turtle and the eel."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: What's it about?
+      options:
+        - How something looks (art, effects, readability)
+        - How something plays (controls, feel, difficulty)
+        - Menus, shops, or the Dive Map
+        - Story, world, or mood
+        - Sound or music
+        - Something else / whole game
+    validations:
+      required: true
+
+  - type: textarea
+    id: options
+    attributes:
+      label: Any ideas for what we could do? (optional)
+      description: |
+        Even a half-idea helps, and so does naming what you *don't* want — "clearer,
+        but without making it tacky" is a genuinely useful constraint.
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Pictures or examples? (optional)
+      description: |
+        A screenshot, a drawing, or a game that already handles it well.
+
+        ⚠️ Add a sentence with any picture — our robot helper often can't open
+        image attachments.
+    validations:
+      required: false
