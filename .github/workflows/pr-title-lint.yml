@@ -1,0 +1,45 @@
+# Conventional-commit gate for PR titles.
+#
+# This repo is issues-only — code PRs are auto-declined (decline-code-prs.yml) —
+# so this gate only ever applies to the occasional maintainer PR. It keeps those
+# consistent with the rest of the org: PRs merge as bubbles with the PR title as
+# the merge subject (merge_commit_title = PR_TITLE), so the title must be a valid
+# Conventional Commit (https://www.conventionalcommits.org).
+#
+# NOTE: this repo restricts Actions to GitHub-owned actions only (a public-repo
+# hardening choice), so we validate inline with actions/github-script rather than
+# the third-party amannn/action-semantic-pull-request used elsewhere. Same rule,
+# same required-check name ("Conventional title", ruleset kyle-coral-feedback-pr-title).
+name: PR Title
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  pull-requests: read
+
+concurrency:
+  group: pr-title-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  pr-title:
+    name: Conventional title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const title = context.payload.pull_request.title || "";
+            const types = ["feat","fix","perf","refactor","docs","test","build","ci","chore","style","revert"];
+            // type(optional-scope)optional-!: summary(>=3 chars)
+            const re = new RegExp(`^(${types.join("|")})(\\([^)]+\\))?!?: .{3,}`);
+            if (!re.test(title)) {
+              core.setFailed(
+                `PR title is not a Conventional Commit:\n  "${title}"\n` +
+                `Expected "type(scope): summary" — type one of: ${types.join(", ")}.`
+              );
+            } else {
+              core.info(`OK: ${title}`);
+            }
