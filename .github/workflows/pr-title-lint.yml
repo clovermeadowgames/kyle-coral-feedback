@@ -1,0 +1,47 @@
+# Conventional-commit gate for PR titles.
+#
+# This repo is issues-only — code PRs are auto-declined (decline-code-prs.yml) —
+# so this gate only ever applies to the occasional maintainer PR. It keeps those
+# consistent with the rest of the org: PRs merge as bubbles with the PR title as
+# the merge subject (merge_commit_title = PR_TITLE), so the title must be a valid
+# Conventional Commit (https://www.conventionalcommits.org).
+#
+# Required check (repo ruleset `kyle-coral-feedback-pr-title`). Re-runs on title
+# edits, so a fix is a title edit — no new push needed.
+name: PR Title
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  pull-requests: read
+
+concurrency:
+  group: pr-title-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  pr-title:
+    name: Conventional title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            perf
+            refactor
+            docs
+            test
+            build
+            ci
+            chore
+            style
+            revert
+          requireScope: false
+          subjectPattern: ^.{3,}$
+          validateSingleCommit: false
