@@ -1,0 +1,34 @@
+name: Regression re-opened
+# A shipped+closed report a tester re-opens is a REGRESSION, not a fresh fix. Strip its `ported` +
+# `fixed:*` labels back to `confirmed` so the next release's close-out (feedback.py ship closes the
+# whole open `ported` queue in the private game repo) can't falsely re-close it — it must re-enter
+# Beat 1 on a real new fix. See the game repo's docs/playtest-workflow.md.
+on:
+  issues:
+    types: [reopened]
+permissions:
+  issues: write
+jobs:
+  regression:
+    if: contains(github.event.issue.labels.*.name, 'ported')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const num = context.issue.number;
+            const names = (context.payload.issue.labels || []).map(l => l.name);
+            for (const name of names.filter(n => n === 'ported' || n.startsWith('fixed:'))) {
+              await github.rest.issues.removeLabel({ owner, repo, issue_number: num, name })
+                .catch(() => {});  // label already gone — fine
+            }
+            // Guarantee it lands back in the confirmed state so it re-enters the fix queue.
+            await github.rest.issues.addLabels({ owner, repo, issue_number: num, labels: ['confirmed'] })
+              .catch(() => {});
+            await github.rest.issues.createComment({
+              owner, repo, issue_number: num,
+              body: "Reopened — treating this as a **regression** 🐚. I've moved it back to "
+                  + "`confirmed` so it re-enters our fix queue; we'll re-port it when the next fix "
+                  + "lands. Thanks for catching that it's still biting!",
+            });
