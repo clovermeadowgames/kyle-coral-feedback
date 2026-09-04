@@ -58,6 +58,17 @@ body:
       required: false
 
   - type: textarea
+    id: media
+    attributes:
+      label: Picture or video (optional)
+      description: |
+        A screenshot of the moment helps — the spot you kept dying, the wall you couldn't pass.
+
+        ⚠️ Add a sentence with it — our robot helper often can't open image attachments.
+    validations:
+      required: false
+
+  - type: textarea
     id: game_info
     attributes:
       label: "Game info ✨ (optional)"
