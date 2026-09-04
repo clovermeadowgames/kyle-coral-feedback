@@ -8,7 +8,7 @@ body:
       value: |
         Found something broken or weird? Nice catch — let's squash it! 🐛
 
-        Five quick boxes. Three of them are just one click.
+        Three quick boxes and you're done. A screenshot helps a lot if you've got one.
 
         > **Wondering whether something *should* work differently** (rather than
         > it being broken)? That's a 🤔 **Design question** instead — it gets a
@@ -17,13 +17,27 @@ body:
   - type: textarea
     id: what
     attributes:
-      label: What happened?
+      label: What's up?
       description: |
-        Tell it like you'd tell a friend. One sentence is plenty — but we do need
-        the sentence, even if you're also adding a picture.
+        Tell it like you'd tell a friend. What did you see? One sentence is plenty —
+        but we do need the sentence, even if you're also adding a picture.
       placeholder: "Kyle got stuck in the wall next to an air bubble and couldn't move."
     validations:
       required: true
+
+  - type: textarea
+    id: should
+    attributes:
+      label: What should it be instead? (optional)
+      description: |
+        Already got the fix in your head? Put it here — "sequence the beats",
+        "make it consistent everywhere", "this scene should be mid-level, not at the start".
+
+        This is the single most useful box for us: it becomes the checklist we use to
+        call the fix *done*. Skip it if you're just flagging the problem.
+      placeholder: "The two popups should stack, not overlap — nudge the second one down or delay it."
+    validations:
+      required: false
 
   - type: dropdown
     id: where
@@ -58,74 +72,39 @@ body:
     validations:
       required: true
 
-  - type: dropdown
-    id: every_time
-    attributes:
-      label: Does it happen every time?
-      options:
-        - Every time
-        - Sometimes
-        - It only happened once
-        - Haven't tried again
-    validations:
-      required: true
-
-  - type: textarea
-    id: game_info
-    attributes:
-      label: "Game info ✨ (the magic box)"
-      description: |
-        **In the game: press ESC, then click `Copy Bug Info`.** Paste it here. That's it!
-
-        (It's also inside `Debug…`, where the button is called `Copy Info`.)
-
-        This one box carries the **seed**, level, biome and version — the seed is what
-        lets us regenerate your exact cave and see the bug ourselves. Without it we're
-        guessing.
-
-        **Can't find the button?** Type the version from the bottom corner of the title
-        screen and the level number you were on, and send it anyway.
-      placeholder: |
-        Kyle Coral v0.6.5
-        Seed: 2710291430
-        Level: 9 (DEEP BLUE)
-        Player: cell (82, 10) @ (1322, 170)
-        Platform: macOS
-      render: text
-    validations:
-      required: true
-
-  - type: textarea
-    id: doing
-    attributes:
-      label: What were you doing right before? (optional)
-      description: Fighting a fish? Grabbing air? Cutting kelp? Anything you remember helps.
-      placeholder: "I was dashing past the spiky coral toward an air bubble."
-    validations:
-      required: false
-
-  - type: dropdown
-    id: device
-    attributes:
-      label: What were you playing with? (optional)
-      description: Worth a click if the bug is about menus, buttons, or controls.
-      options:
-        - Keyboard
-        - Controller
-        - Mouse
-        - Keyboard and controller together
-    validations:
-      required: false
-
   - type: textarea
     id: media
     attributes:
       label: Picture or video (optional)
       description: |
-        Drag a screenshot or clip here — a picture helps a LOT.
+        Drag a screenshot or clip here — a picture helps a LOT, especially for
+        anything visual.
 
-        ⚠️ But **please don't send a picture on its own.** Our robot helper often
-        can't open image attachments, so a report that's only screenshots can't be
-        worked on at all. Always describe it in words too.
+        ⚠️ But **please add a sentence up top too** — don't send a picture on its own.
+        Our robot helper often can't open image attachments, so a report that's only a
+        screenshot can't be worked on at all.
+    validations:
+      required: false
+
+  - type: textarea
+    id: game_info
+    attributes:
+      label: "Game info ✨ — the seed box (optional, but gold for gameplay bugs)"
+      description: |
+        **Was it a *gameplay* bug** — stuck, crash, froze, wrong physics, something off in
+        the cave itself? **In the game: press ESC, then click `Copy Bug Info`, and paste it
+        here.** The seed regenerates your *exact* cave so we can see the bug ourselves —
+        without it, on those, we're guessing.
+
+        **Pure visual glitch?** A screenshot's plenty — you can skip this box.
+
+        (The button's also inside `Debug…`, where it's called `Copy Info`.)
+      placeholder: |
+        Kyle Coral v0.7.0
+        Seed: 3681153803
+        Level: 7 (KELP FOREST)
+        Player: cell (222, 4) @ (3567, 65)
+        Platform: macOS
+      render: text
     validations:
       required: false
