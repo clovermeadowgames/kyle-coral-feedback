@@ -11,14 +11,18 @@ jobs:
       - uses: actions/github-script@v7
         with:
           script: |
+            // Decline code PRs from OUTSIDE the team only. Owners, org members, and
+            // collaborators can still open normal docs/config PRs against this repo.
+            const assoc = context.payload.pull_request.author_association;
+            if (["OWNER", "MEMBER", "COLLABORATOR"].includes(assoc)) return;
+
             const author = context.payload.pull_request.user.login;
             const body = [
-              `Thanks for wanting to help, @${author}! ❤️`, '',
-              "This repository is our **feedback intake** — the game's source code isn't hosted",
-              "here, so there's nothing for a code change to modify. I'm closing this PR, but",
-              "please don't take it the wrong way: **the reports and ideas you file here are",
-              "exactly what we're looking for.**", '',
-              "👉 [Open a bug report or feature idea instead](../../issues/new/choose) — thank you! 🐚",
+              `Thanks, @${author}. This repo is our feedback intake: the game's source`,
+              "isn't hosted here, so there's nothing for a code change to modify.",
+              "",
+              "Closing this one, but the reports and ideas you file here are exactly what",
+              "we're after: [open a bug report or feature idea instead](../../issues/new/choose).",
             ].join('\n');
             await github.rest.issues.createComment({
               owner: context.repo.owner, repo: context.repo.repo,

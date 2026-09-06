@@ -1,21 +1,20 @@
 name: 🤔 Ask a design question
-description: Not broken — but should it work this way? Open questions and "what's our best option here?"
+description: Not broken, but should it work this way? Open questions and "what's our best option here?"
 title: "[Design]: "
 labels: ["question"]
 body:
   - type: markdown
     attributes:
       value: |
-        For the questions that don't have a right answer yet. 🤔
+        For the questions that don't have a right answer yet.
 
         "Should enemies look more dangerous?", "is the shop in the right place?",
         "do players just learn this, or do we teach it?" — those belong here, not
-        in a bug report. Filed as a bug they get read as "something is broken",
-        someone goes looking for the break, finds none, and the actual question
-        never gets answered.
+        in a bug report. Filed as a bug, they get read as "something is broken",
+        someone goes looking for the break, finds none, and the question never
+        gets answered.
 
-        **Broken thing?** → 🐛 Report a bug.
-        **Too hard / too easy?** → ⚖️ Too hard or too easy?
+        > Broken thing? File a bug report. Too hard or too easy? File balance feedback.
 
   - type: textarea
     id: question
@@ -32,7 +31,7 @@ body:
       label: What made you think of it?
       description: |
         The moment that prompted it. Real examples are what make a design question
-        answerable — "coral vs. anemone" beats "some things are unclear".
+        answerable: "coral vs. anemone" beats "some things are unclear".
       placeholder: "I keep swimming into anemones because they look like the coral you can touch. Same with the turtle and the eel."
     validations:
       required: true
@@ -56,7 +55,7 @@ body:
     attributes:
       label: Any ideas for what we could do? (optional)
       description: |
-        Even a half-idea helps, and so does naming what you *don't* want — "clearer,
+        Even a half-idea helps, and so does naming what you *don't* want. "Clearer,
         but without making it tacky" is a genuinely useful constraint.
     validations:
       required: false
@@ -68,7 +67,6 @@ body:
       description: |
         A screenshot, a drawing, or a game that already handles it well.
 
-        ⚠️ Add a sentence with any picture — our robot helper often can't open
-        image attachments.
+        Add a sentence with any picture. Our tools often can't read image attachments.
     validations:
       required: false
