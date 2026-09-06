@@ -6,20 +6,19 @@ body:
   - type: markdown
     attributes:
       value: |
-        Is something too hard, too easy, or just kind of unfair? Tell us and
-        we'll tune it. ⚖️
+        Is something too hard, too easy, or just unfair? Tell us and we'll tune it.
 
-        > **Actually broken**, not just tough? → 🐛 Report a bug.
+        > Actually broken, not just tough? File a bug report instead.
 
   - type: dropdown
     id: direction
     attributes:
       label: Which way?
       options:
-        - Too hard — I kept failing
-        - Too easy — no challenge
-        - Unfair — losing didn't feel like my fault
-        - Slow or boring — not hard, just a slog
+        - "Too hard: I kept failing"
+        - "Too easy: no challenge"
+        - "Unfair: losing didn't feel like my fault"
+        - "Slow or boring: not hard, just a slog"
     validations:
       required: true
 
@@ -53,7 +52,7 @@ body:
     id: better
     attributes:
       label: What would make it better?
-      description: More air? A slower monster? A cheaper knife? Your call — even a guess helps.
+      description: More air? A slower monster? A cheaper knife? Even a guess helps.
     validations:
       required: false
 
@@ -62,20 +61,19 @@ body:
     attributes:
       label: Picture or video (optional)
       description: |
-        A screenshot of the moment helps — the spot you kept dying, the wall you couldn't pass.
+        A screenshot of the moment helps: the spot you kept dying, the wall you couldn't pass.
 
-        ⚠️ Add a sentence with it — our robot helper often can't open image attachments.
+        Add a sentence with it. Our tools often can't read image attachments.
     validations:
       required: false
 
   - type: textarea
     id: game_info
     attributes:
-      label: "Game info ✨ (optional)"
+      label: "Game info (optional)"
       description: |
-        If it was one exact level, press **ESC** in game, click **`Copy Bug Info`**,
-        and paste it here — the seed lets us replay your exact cave and feel it
-        ourselves.
+        If it was one exact level, press **ESC** in game, click **`Copy Bug Info`**, and
+        paste it here. The seed lets us replay your exact cave and feel it ourselves.
       render: text
     validations:
       required: false
