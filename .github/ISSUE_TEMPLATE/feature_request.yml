@@ -6,11 +6,11 @@ body:
   - type: markdown
     attributes:
       value: |
-        Got a cool idea for the game? We want to hear it! 💡
-        Tell us as much or as little as you like.
+        Got an idea for the game? We want to hear it. Tell us as much or as little
+        as you like.
 
         > Not sure it's an idea so much as an open question ("should it work this
-        > way?") → 🤔 **Ask a design question** instead.
+        > way?")? File a design question instead.
 
   - type: textarea
     id: idea
@@ -33,6 +33,6 @@ body:
     id: extra
     attributes:
       label: Anything else?
-      description: Drawings, pictures, or a game that already does it well — drop it here.
+      description: Drawings, pictures, or a game that already does it well. Drop it here.
     validations:
       required: false

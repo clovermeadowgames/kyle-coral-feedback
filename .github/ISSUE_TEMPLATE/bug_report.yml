@@ -6,12 +6,12 @@ body:
   - type: markdown
     attributes:
       value: |
-        Found something broken or weird? Nice catch — let's squash it! 🐛
+        Found something broken or weird? Let's squash it.
 
-        Three quick boxes and you're done. A screenshot helps a lot if you've got one.
+        Three quick boxes and you're done. A screenshot helps if you've got one.
 
-        > **Wondering whether something *should* work differently** (rather than
-        > it being broken)? That's a 🤔 **Design question** instead — it gets a
+        > Wondering whether something *should* work differently (rather than it
+        > being broken)? File it as a **Design question** instead — it gets a
         > better answer over there.
 
   - type: textarea
@@ -19,7 +19,7 @@ body:
     attributes:
       label: What's up?
       description: |
-        Tell it like you'd tell a friend. What did you see? One sentence is plenty —
+        Tell it like you'd tell a friend. What did you see? One sentence is plenty,
         but we do need the sentence, even if you're also adding a picture.
       placeholder: "Kyle got stuck in the wall next to an air bubble and couldn't move."
     validations:
@@ -30,12 +30,12 @@ body:
     attributes:
       label: What should it be instead? (optional)
       description: |
-        Already got the fix in your head? Put it here — "sequence the beats",
+        Already got the fix in your head? Put it here: "sequence the beats",
         "make it consistent everywhere", "this scene should be mid-level, not at the start".
 
-        This is the single most useful box for us: it becomes the checklist we use to
-        call the fix *done*. Skip it if you're just flagging the problem.
-      placeholder: "The two popups should stack, not overlap — nudge the second one down or delay it."
+        This is the most useful box for us. It becomes the checklist we use to call the
+        fix done. Skip it if you're just flagging the problem.
+      placeholder: "The two popups should stack, not overlap. Nudge the second one down or delay it."
     validations:
       required: false
 
@@ -65,10 +65,10 @@ body:
       label: How bad is it?
       description: Pick by what it *did to your game*, not how ugly it was.
       options:
-        - "Stopped me — it crashed, froze, or I got stuck and had to quit"
-        - "Cost me the run — I lost a life, lost pearls, or had to start over"
-        - "Wrong, but I played on — something worked, just not the way it should"
-        - "Only looks wrong — a visual glitch; nothing actually broke"
+        - "Stopped me: it crashed, froze, or I got stuck and had to quit"
+        - "Cost me the run: I lost a life, lost pearls, or had to start over"
+        - "Wrong, but I played on: something worked, just not the way it should"
+        - "Only looks wrong: a visual glitch, nothing actually broke"
     validations:
       required: true
 
@@ -77,26 +77,24 @@ body:
     attributes:
       label: Picture or video (optional)
       description: |
-        Drag a screenshot or clip here — a picture helps a LOT, especially for
-        anything visual.
+        Drag a screenshot or clip here. A picture helps a lot, especially for anything visual.
 
-        ⚠️ But **please add a sentence up top too** — don't send a picture on its own.
-        Our robot helper often can't open image attachments, so a report that's only a
-        screenshot can't be worked on at all.
+        Please add a sentence up top too. A report that's only a screenshot can't be worked
+        on, because our tools often can't read image attachments.
     validations:
       required: false
 
   - type: textarea
     id: game_info
     attributes:
-      label: "Game info ✨ — the seed box (optional, but gold for gameplay bugs)"
+      label: "Game info — the seed box (optional, but important for gameplay bugs)"
       description: |
-        **Was it a *gameplay* bug** — stuck, crash, froze, wrong physics, something off in
-        the cave itself? **In the game: press ESC, then click `Copy Bug Info`, and paste it
-        here.** The seed regenerates your *exact* cave so we can see the bug ourselves —
-        without it, on those, we're guessing.
+        Was it a *gameplay* bug (stuck, crash, froze, wrong physics, something off in the
+        cave itself)? In the game, press ESC, click `Copy Bug Info`, and paste it here. The
+        seed regenerates your exact cave so we can see the bug ourselves. Without it, on
+        those, we're guessing.
 
-        **Pure visual glitch?** A screenshot's plenty — you can skip this box.
+        Pure visual glitch? A screenshot's plenty; you can skip this box.
 
         (The button's also inside `Debug…`, where it's called `Copy Info`.)
       placeholder: |
