@@ -1,8 +1,8 @@
-# 🐚 Kyle Coral — Playtester Feedback
+# 🐚 Kyle Coral Playtester Feedback
 
 Thanks for helping test [Kyle Coral](https://clovermeadowgames.com/kyle-coral). This is the public spot for bug reports and feedback on the demo. No account approvals or permissions needed; just open an issue.
 
-Kyle Coral is an underwater cave-diving adventure: hold your breath, thread a flooded cave, refill at air pockets, and get back to the surface before the tank runs out.
+Kyle Coral is an underwater cave-diving adventure: hold your breath, thread a flooded cave, refill at air pockets, and get back to the surface before your air runs out.
 
 ## Found a bug? The fast way
 
@@ -36,4 +36,4 @@ When a report is especially sharp (a clean repro, a nasty edge case, a clip that
 - Screenshots help, but describe it in words too.
 
 Thanks for diving with us.
-— Cam & the boys
+Cam & the boys
