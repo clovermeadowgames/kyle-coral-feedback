@@ -9,12 +9,22 @@
 # NOTE: this repo restricts Actions to GitHub-owned actions only (a public-repo
 # hardening choice), so we validate inline with actions/github-script rather than
 # the third-party amannn/action-semantic-pull-request used elsewhere. Same rule,
-# same required-check name ("Conventional title", ruleset kyle-coral-feedback-pr-title).
+# same check name ("Conventional title").
+#
+# ADVISORY, not required. The org ruleset `cmg-pr-title` that made this a required check is
+# disabled (clovermeadowgames/kyle-coral#2196). A bad title still shows red on the PR; it just
+# doesn't block merge. It re-runs when the title is edited, so a fix is a title edit.
+#
+# Runs on opened/edited/reopened only, NOT synchronize: a push can't change a PR title, so
+# re-running on every push only billed a runner minute per push. It ran on synchronize before
+# solely because a REQUIRED check has to report on the PR's current head SHA. If `cmg-pr-title`
+# is ever re-enabled, add `synchronize` back FIRST, or any PR pushed after opening waits forever
+# on a check that never reports.
 name: PR Title
 
 on:
   pull_request:
-    types: [opened, edited, reopened, synchronize]
+    types: [opened, edited, reopened]
 
 permissions:
   pull-requests: read
