@@ -34,6 +34,7 @@ When a report is especially sharp (a clean repro, a nasty edge case, a clip that
 - This repo is for feedback only. The game's source lives elsewhere, so please don't open code PRs here (see [CONTRIBUTING.md](CONTRIBUTING.md)).
 - One thing per report, so each fix is easy to track.
 - Screenshots help, but describe it in words too.
+- What the test build shares, and what it never does: [PRIVACY.md](PRIVACY.md).
 
 Thanks for diving with us.
 Cam & the boys
